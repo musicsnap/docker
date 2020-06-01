@@ -2,7 +2,7 @@ FROM php74
 LABEL maintainer="<musicsnap@163.com>"
 ENV ROOT_PATH /root/docker
 #安装yaf
-ADD $ROOT_PATH/src/yaf-3.0.8.tar.gz /root/yaf-3.0.8
+ADD /root/docker/src/yaf-3.0.8.tar.gz /root/yaf-3.0.8
 WORKDIR /root/yaf-3.0.8
 RUN phpize
 RUN ./configure --with-php-config=/usr/local/bin/php-config
@@ -39,4 +39,4 @@ RUN docker-php-ext-install pdo_mysql
 RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
 
 #安装配置文件
-COPY $ROOT_PATH/server/php/php.ini /usr/local/etc/php/
+COPY /root/docker/server/php/php.ini /usr/local/etc/php/
