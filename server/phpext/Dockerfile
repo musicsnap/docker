@@ -39,4 +39,4 @@ RUN docker-php-ext-install pdo_mysql
 RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
 
 #安装配置文件
-COPY /root/docker/server/php/php.ini /usr/local/etc/php/
+COPY ./php.ini /usr/local/etc/php/
