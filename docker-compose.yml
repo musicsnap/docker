@@ -1,0 +1,46 @@
+version: "2.1"
+services:
+  php74:
+    build: ${ROOT_PATH}/server/php
+    image: php74:latest
+    networks:
+      extnetwork:
+        ipv4_address: ${SUBNET_PREFIX}.2
+  phpext:
+    build: ${ROOT_PATH}/server/phpext
+    image: phpext:latest
+    volumes:
+      - ${ROOT_PATH}/data/ym/:/var/www/html/
+    #修改时区
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      extnetwork:
+        ipv4_address: ${SUBNET_PREFIX}.3
+    ports:
+      - "39000:9000"
+    depends_on:
+      - php74
+  nginx:
+    build: ${ROOT_PATH}/server/nginx
+    image: ymnginx:latest
+    volumes:
+      - ${ROOT_PATH}/data/ym/:/var/www/html/
+    #修改时区
+    environment: 
+      - TZ=Asia/Shanghai
+    networks:
+      extnetwork:
+        ipv4_address: ${SUBNET_PREFIX}.4
+    #开放端口(随机端口)
+    ports:
+      - "39080:80"
+    depends_on:
+      - phpext
+networks:
+  extnetwork:
+    name: ht-nw
+    ipam:
+      config:
+        - subnet: ${SUBNET_PREFIX}.0/16
+          gateway: ${SUBNET_PREFIX}.1

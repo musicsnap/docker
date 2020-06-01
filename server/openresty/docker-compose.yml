@@ -1,0 +1,37 @@
+version: "2.1"
+services:
+  openresty:
+    #重置openresty镜像
+    build: ./openresty-healthcheck-logcut
+    image: openresty-healthcheck-logcut:latest
+    #image: openresty/openresty原始镜像
+    ports:
+      - 80:80
+      - 443:443
+      #mongodb
+      - 37017:37017
+      #windows
+      - 33389:33389
+    volumes:
+      #nginx主配置文件
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      #nginx子配置文件夹
+      - ./conf.d:/etc/nginx/conf.d
+      #tcp转发配置
+#      - ./conftcp.d:/etc/nginx/conftcp.d
+      #nginx日志
+      - ./logs:/usr/local/openresty/nginx/logs
+      #lua脚本文件夹
+      - ./luafile:/usr/local/openresty/nginx/luafile
+
+    networks:
+      - openresty-net
+    environment:
+      - TZ=Asia/Shanghai
+    healthcheck:
+      test: ["CMD", "/usr/local/healtycheck.sh"]
+      interval: 5s
+      timeout: 30s
+      retries: 5
+networks:
+  openresty-net:
