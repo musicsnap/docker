@@ -2,7 +2,7 @@ FROM php74
 LABEL maintainer="<musicsnap@163.com>"
 ENV ROOT_PATH /root/docker
 #安装yaf
-ADD /root/docker/src/yaf-3.0.8.tar.gz /root/yaf-3.0.8
+ADD ./yaf-3.0.8.tar.gz /root/yaf-3.0.8
 WORKDIR /root/yaf-3.0.8
 RUN phpize
 RUN ./configure --with-php-config=/usr/local/bin/php-config
