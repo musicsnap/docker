@@ -1,6 +1,6 @@
 FROM php74
 LABEL maintainer="<musicsnap@163.com>"
-ENV ROOT_PATH=/root/docker
+ENV ROOT_PATH /root/docker
 #安装yaf
 ADD $ROOT_PATH/src/yaf-3.0.8.tar.gz /root/yaf-3.0.8
 WORKDIR /root/yaf-3.0.8
