@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:7.3-fpm
 LABEL maintainer="<musicsnap@163.com>"
 #切换至国内镜像
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
