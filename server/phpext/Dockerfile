@@ -7,6 +7,7 @@ RUN apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
+        libzip \
         openssl \
         libssl-dev
 #安装gd
