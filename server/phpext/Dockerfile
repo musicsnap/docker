@@ -1,4 +1,4 @@
-FROM php74
+FROM ymphp
 LABEL maintainer="<musicsnap@163.com>"
 ENV ROOT_PATH /root/docker
 #安装yaf

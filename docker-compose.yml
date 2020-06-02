@@ -1,8 +1,8 @@
 version: "2.1"
 services:
-  php74:
+  ymphp:
     build: ${ROOT_PATH}/server/php
-    image: php74:latest
+    image: ymphp:latest
     networks:
       extnetwork:
         ipv4_address: ${SUBNET_PREFIX}.2
@@ -20,7 +20,7 @@ services:
     ports:
       - "39000:9000"
     depends_on:
-      - php74
+      - ymphp
   nginx:
     build: ${ROOT_PATH}/server/nginx
     image: ymnginx:latest
