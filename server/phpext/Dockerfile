@@ -27,7 +27,7 @@ RUN pecl install mongodb-1.7.4 && docker-php-ext-enable mongodb
 #安装memcached
 RUN apt-get install libsasl2-dev
 WORKDIR /root
-ADD libmemcached-1.0.18.tar.gz/ /root/libmemcached-1.0.18.tar.gz/
+ADD libmemcached-1.0.18.tar.gz/ /root/libmemcached-1.0.18.tar.gz
 RUN pwd && tar -zxvf libmemcached-1.0.18.tar.gz && ls -l && cd libmemcached-1.0.18 && ls -l && ./configure --enable-sasl && make && make install
 RUN pecl install memcached-3.1.3 && docker-php-ext-enable memcached
 
