@@ -7,7 +7,6 @@ RUN apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
-        libzip \
         openssl \
         libssl-dev
 #安装gd
@@ -38,7 +37,6 @@ WORKDIR /root
 #RUN docker-php-ext-enable memcache
 
 #安装mysql
-RUN docker-php-ext-install zip
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install mysqli
