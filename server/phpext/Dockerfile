@@ -38,7 +38,15 @@ RUN pecl install redis-4.3.0 && docker-php-ext-enable redis
 RUN pecl install mongodb-1.7.4 && docker-php-ext-enable mongodb
 
 #安装memcached
+RUN apt-get install libsasl2-dev
+WORKDIR /tmp
+ADD libmemcached-1.0.18/ /tmp/libmemcached-1.0.18/
+RUN cd libmemcached-1.0.18 && ./configure --enable-sasl && make && make install
 RUN pecl install memcached-3.1.5 && docker-php-ext-enable memcached
+
+RUN apt-get install wget
+RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
+RUN docker-php-ext-enable memcache
 
 #安装mysql
 RUN docker-php-ext-install zip
