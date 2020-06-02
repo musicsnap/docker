@@ -32,7 +32,7 @@ WORKDIR /root
 #RUN cd libmemcached/libmemcached-1.0.18 && ls -l && ./configure --disable-sasl && make && make install
 #RUN pecl install memcached-3.1.3 && docker-php-ext-enable memcached
 
-RUN apt-get install wget
+RUN apt-get install wget && Y
 RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
 RUN docker-php-ext-enable memcache
 
