@@ -41,8 +41,6 @@ RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
 
-#安装xdebug
-RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
 
 #安装配置文件
 COPY ./php.ini /usr/local/etc/php/
