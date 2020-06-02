@@ -36,13 +36,10 @@ WORKDIR /root
 #RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
 #RUN docker-php-ext-enable memcache
 
-ADD oniguruma-6.9.4.tar.gz/ /root/oniguruma
-RUN cd oniguruma/oniguruma-6.9.4 && ls -l && ./autogen.sh && ./configure && make && make install
 #安装mysql
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install mbstring
 
 #安装xdebug
 RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
