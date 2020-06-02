@@ -16,6 +16,8 @@ LABEL maintainer="<musicsnap@163.com>"
 
 #安装依赖
 RUN apt-get install -y \
+        zlib1g-dev \
+        libz-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev
