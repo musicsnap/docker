@@ -2,13 +2,13 @@ FROM php74
 LABEL maintainer="<musicsnap@163.com>"
 ENV ROOT_PATH /root/docker
 #安装yaf
-#ADD ./yaf-3.0.8.tar.gz /root/yaf-3.0.8
-#WORKDIR /root/yaf-3.0.8
-#RUN phpize
-#RUN ./configure --with-php-config=/usr/local/bin/php-config
-#RUN make && make install
-##配置yaf
-#RUN docker-php-ext-enable yaf
+ADD ./yaf-3.0.8.tar.gz /root/yaf-3.0.8
+WORKDIR /root/yaf-3.0.8
+RUN phpize
+RUN ./configure --with-php-config=/usr/local/bin/php-config
+RUN make && make install
+#配置yaf
+RUN docker-php-ext-enable yaf
 
 #安装依赖
 RUN apt-get install -y \
