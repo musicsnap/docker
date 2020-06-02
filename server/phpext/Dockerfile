@@ -32,9 +32,9 @@ WORKDIR /root
 #RUN cd libmemcached/libmemcached-1.0.18 && ls -l && ./configure --disable-sasl && make && make install
 #RUN pecl install memcached-3.1.3 && docker-php-ext-enable memcached
 
-RUN apt-get install wget && Y
-RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
-RUN docker-php-ext-enable memcache
+#RUN apt-get install wget
+#RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
+#RUN docker-php-ext-enable memcache
 
 #安装mysql
 RUN docker-php-ext-install zip
@@ -43,8 +43,6 @@ RUN docker-php-ext-install pdo
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mbstring
-
-RUN apt-get install cron
 
 #安装xdebug
 RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
