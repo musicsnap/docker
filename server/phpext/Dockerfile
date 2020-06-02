@@ -27,9 +27,10 @@ RUN pecl install mongodb-1.7.4 && docker-php-ext-enable mongodb
 #安装memcached
 RUN apt-get install libsasl2-dev
 WORKDIR /root
-ADD libmemcached-1.0.18.tar.gz/ /root/libmemcached
-RUN cd libmemcached/libmemcached-1.0.18 && ls -l && ./configure --disable-sasl && make && make install
-RUN pecl install memcached-3.1.3 && docker-php-ext-enable memcached
+#下面抱错 make[1]: *** [Makefile:5832: clients/memflush.o] Error 1
+#ADD libmemcached-1.0.18.tar.gz/ /root/libmemcached
+#RUN cd libmemcached/libmemcached-1.0.18 && ls -l && ./configure --disable-sasl && make && make install
+#RUN pecl install memcached-3.1.3 && docker-php-ext-enable memcached
 
 RUN apt-get install wget
 RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
