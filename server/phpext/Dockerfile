@@ -8,11 +8,11 @@ LABEL maintainer="<musicsnap@163.com>"
 #RUN ./configure --with-php-config=/usr/local/bin/php-config
 #RUN make && make install
 
-RUN curl -L -o /tmp/yaf.tar.gz https://pecl.php.net/get/yaf-3.2.3.tgz \
-    && tar xfz /tmp/yaf.tar.gz \
-    && rm -r /tmp/yaf.tar.gz \
-    && mv yaf-3.2.3 /usr/src/php/ext/yaf \
-    && docker-php-ext-install yaf
+#RUN curl -L -o /tmp/yaf.tar.gz https://pecl.php.net/get/yaf-3.2.3.tgz \
+#    && tar xfz /tmp/yaf.tar.gz \
+#    && rm -r /tmp/yaf.tar.gz \
+#    && mv yaf-3.2.3 /usr/src/php/ext/yaf \
+#    && docker-php-ext-install yaf
 
 #安装依赖
 RUN apt-get install -y \
@@ -27,7 +27,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 #配置yaf
 #RUN docker-php-ext-enable yaf
-RUN pecl install yaf-3.0.8 && docker-php-ext-enable yaf
+RUN pecl install yaf-3.2.3 && docker-php-ext-enable yaf
 
 #安装redis
 RUN pecl install redis-4.3.0 && docker-php-ext-enable redis
