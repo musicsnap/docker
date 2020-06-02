@@ -6,4 +6,3 @@ deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib
 deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib
 deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib
 deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib
-deb http://openresty.org/package/debian stretch openresty
