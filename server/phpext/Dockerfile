@@ -18,14 +18,18 @@ LABEL maintainer="<musicsnap@163.com>"
 RUN apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libpng-dev
+        libmcrypt-dev \
+        libpng-dev \
+        openssl \
+        libssl-dev
 #安装gd
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
 
 #配置yaf
-#RUN docker-php-ext-enable yaf
 RUN pecl install yaf-3.2.3 && docker-php-ext-enable yaf
+
+RUN pecl install swoole-4.5.2 && docker-php-ext-enable swoole
 
 #安装redis
 RUN pecl install redis-4.3.0 && docker-php-ext-enable redis
