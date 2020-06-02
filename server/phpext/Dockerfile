@@ -8,16 +8,16 @@ LABEL maintainer="<musicsnap@163.com>"
 #RUN ./configure --with-php-config=/usr/local/bin/php-config
 #RUN make && make install
 
-#RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.7.tar.gz \
-#    && tar xfz /tmp/redis.tar.gz \
-#    && rm -r /tmp/redis.tar.gz \
-#    && mv phpredis-2.2.7 /usr/src/php/ext/redis \
-#    && docker-php-ext-install redis
+RUN curl -L -o /tmp/yaf.tar.gz https://pecl.php.net/get/yaf-3.2.3.tgz \
+    && tar xfz /tmp/yaf.tar.gz \
+    && rm -r /tmp/yaf.tar.gz \
+    && mv yaf-3.2.3 /usr/src/php/ext/yaf \
+    && docker-php-ext-install yaf
 
 #安装依赖
 RUN apt-get install -y \
-        zlib1g-dev \
         libz-dev \
+        zlib1g-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev
