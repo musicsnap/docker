@@ -56,6 +56,8 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mbstring
 
+RUN apt-get install cron
+
 #安装xdebug
 RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
 
