@@ -4,4 +4,4 @@ LABEL maintainer="<musicsnap@163.com>"
 COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update
-RUN apt-get install -y net-tools procps curl wget vim telnet cron
+RUN apt-get install -y libncurses5 libncursesw5 libtinfo5 psmisc net-tools procps curl wget vim telnet cron
