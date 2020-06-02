@@ -8,6 +8,12 @@ LABEL maintainer="<musicsnap@163.com>"
 #RUN ./configure --with-php-config=/usr/local/bin/php-config
 #RUN make && make install
 
+#RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.7.tar.gz \
+#    && tar xfz /tmp/redis.tar.gz \
+#    && rm -r /tmp/redis.tar.gz \
+#    && mv phpredis-2.2.7 /usr/src/php/ext/redis \
+#    && docker-php-ext-install redis
+
 #安装依赖
 RUN apt-get install -y \
         libfreetype6-dev \
@@ -22,15 +28,16 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 
 #配置yaf
 #RUN docker-php-ext-enable yaf
+RUN pecl install yaf-3.0.8 && docker-php-ext-enable yaf
 
 #安装redis
 RUN pecl install redis-4.3.0 && docker-php-ext-enable redis
 
 #安装mongodb
-#RUN pecl install mongodb-1.7.4 && docker-php-ext-enable mongodb
+RUN pecl install mongodb-1.7.4 && docker-php-ext-enable mongodb
 
 #安装memcached
-#RUN pecl install memcached-3.1.5 && docker-php-ext-enable memcached
+RUN pecl install memcached-3.1.5 && docker-php-ext-enable memcached
 
 #安装mysql
 RUN docker-php-ext-install zip
