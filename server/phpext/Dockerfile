@@ -1,19 +1,6 @@
 FROM ymphp
 LABEL maintainer="<musicsnap@163.com>"
 
-#安装yaf
-#ADD ./yaf-3.0.8.tar.gz /root/yaf-3.0.8
-#WORKDIR /root/yaf-3.0.8
-#RUN phpize
-#RUN ./configure --with-php-config=/usr/local/bin/php-config
-#RUN make && make install
-
-#RUN curl -L -o /tmp/yaf.tar.gz https://pecl.php.net/get/yaf-3.2.3.tgz \
-#    && tar xfz /tmp/yaf.tar.gz \
-#    && rm -r /tmp/yaf.tar.gz \
-#    && mv yaf-3.2.3 /usr/src/php/ext/yaf \
-#    && docker-php-ext-install yaf
-
 #安装依赖
 RUN apt-get install -y \
         libfreetype6-dev \
@@ -39,10 +26,10 @@ RUN pecl install mongodb-1.7.4 && docker-php-ext-enable mongodb
 
 #安装memcached
 RUN apt-get install libsasl2-dev
-WORKDIR /tmp
-ADD libmemcached-1.0.18/ /tmp/libmemcached-1.0.18/
+WORKDIR /root
+ADD libmemcached-1.0.18/ /root/libmemcached-1.0.18/
 RUN cd libmemcached-1.0.18 && ./configure --enable-sasl && make && make install
-RUN pecl install memcached-3.1.5 && docker-php-ext-enable memcached
+RUN pecl install memcached-3.1.3 && docker-php-ext-enable memcached
 
 RUN apt-get install wget
 RUN wget http://pecl.php.net/get/memcache-3.0.8.tgz && tar -zxvf memcache-3.0.8.tgz && cd memcache-3.0.8 && phpize && ./configure --enable-memcache && make && make install
